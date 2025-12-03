@@ -51,14 +51,9 @@ services:
       - key: OUTPUT_DIR
         value: ./output
 
-    # 持久化存储 (用户数据)
-    disk:
-      name: user-data
-      mountPath: /opt/render/project/src/data
-      sizeGB: 1  # 免费套餐最多 1GB
-
 # 注意事项:
 # 1. 免费套餐会在 15 分钟无请求后休眠
 # 2. 首次访问需要 10-30 秒启动时间
 # 3. 每月有 750 小时运行时间限制
 # 4. 需要配合 Cloudflare Tunnel 连接本地 ComfyUI
+# 5. 免费套餐不支持持久化磁盘,文件会在重启后清空(适用于临时生成的视频文件)
