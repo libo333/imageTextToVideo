@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="app.title">图文生视频创作工具</title>
+    <link rel="icon" href="data:,">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="user-center.css">
+    <link rel="stylesheet" href="language-selector.css">
+    <!-- 多语言支持 -->
+    <script src="./i18n/i18n.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 语言选择器 -->
+        <div class="language-selector">
+            <button class="lang-btn" id="langBtn" title="Select Language">
+                <span class="lang-icon">🌍</span>
+                <span class="lang-name" id="langName">简体中文</span>
+                <span class="lang-dropdown">▼</span>
+            </button>
+            <div class="lang-menu" id="langMenu" style="display: none;">
+                <button class="lang-option" data-lang="zh-CN">简体中文</button>
+                <button class="lang-option" data-lang="zh-TW">繁體中文</button>
+                <button class="lang-option" data-lang="en-US">English</button>
+                <button class="lang-option" data-lang="ja-JP">日本語</button>
+            </div>
+        </div>
+
+        <!-- 标签页导航 -->
+        <div class="tabs-container">
+            <button class="tab-btn active" data-tab="create" data-i18n="tabs.create">🎬 创作工具</button>
+            <button class="tab-btn" data-tab="profile" data-i18n="tabs.profile">📊 个人中心</button>
+        </div>
+
+        <!-- 创作工具页面 -->
+        <div id="createTab" class="tab-content active">
+            <!-- 标题 -->
+            <div class="header">
+                <h1 data-i18n="app.title">🎬 图文生视频创作工具</h1>
+                <p class="subtitle" data-i18n="app.subtitle">上传图片，选择模型和特效，轻松生成视频</p>
+            </div>
+
+        <!-- 上传区域 -->
+        <div class="upload-section">
+            <div class="upload-box" id="uploadBox">
+                <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                <div class="upload-placeholder" id="uploadPlaceholder">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <p data-i18n="upload.drag">点击或拖拽上传图片</p>
+                    <span class="file-hint" data-i18n="upload.hint">支持 JPG、PNG 格式，最大 10MB</span>
+                </div>
+                <div class="image-preview" id="imagePreview" style="display: none;">
+                    <img id="previewImg" src="" alt="预览">
+                    <button class="remove-btn" id="removeImage">&times;</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI引擎选择 -->
+        <div class="section">
+            <h2 data-i18n="engine.title">🤖 AI 引擎</h2>
+            <div class="engine-selector">
+                <button class="engine-btn active" data-engine="svd">
+                    <div class="engine-icon">✨</div>
+                    <div class="engine-content">
+                        <div class="engine-title" data-i18n="engine.svd.name">SVD</div>
+                        <div class="engine-desc" data-i18n="engine.svd.desc">保持人脸细节 • 25帧 • 4秒</div>
+                        <div class="engine-capability" data-i18n="engine.svd.capability">🖼️ 仅图片转视频</div>
+                    </div>
+                </button>
+                <button class="engine-btn" data-engine="animatediff">
+                    <div class="engine-icon">🎨</div>
+                    <div class="engine-content">
+                        <div class="engine-title" data-i18n="engine.animatediff.name">AnimateDiff</div>
+                        <div class="engine-desc" data-i18n="engine.animatediff.desc">风格化动画 • 32帧 • 5秒</div>
+                        <div class="engine-capability" data-i18n="engine.animatediff.capability">🖼️ 仅图片转视频</div>
+                    </div>
+                </button>
+                <button class="engine-btn" data-engine="cogvideo">
+                    <div class="engine-icon">🎞️</div>
+                    <div class="engine-content">
+                        <div class="engine-title" data-i18n="engine.cogvideo.name">CogVideoX 1.5</div>
+                        <div class="engine-desc" data-i18n="engine.cogvideo.desc">最长时长 • 49帧 • 6秒</div>
+                        <div class="engine-capability" data-i18n="engine.cogvideo.capability">🖼️ 图片转视频 • 📝 文字转视频</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- SVD参数配置 (仅SVD引擎显示) -->
+        <div class="section" id="svdParams" style="display: block;">
+            <h2 data-i18n="motion.title">⚙️ 运动强度</h2>
+            <div class="slider-container">
+                <label for="motionBucket" data-i18n="motion.label">运动幅度: <span id="motionBucketValue">100</span></label>
+                <input type="range" id="motionBucket" min="50" max="200" value="100" step="10">
+                <div class="slider-labels">
+                    <span data-i18n="motion.light">轻微 (50)</span>
+                    <span data-i18n="motion.medium">中等 (127)</span>
+                    <span data-i18n="motion.strong">强烈 (200)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 运动效果 (仅AnimateDiff显示) -->
+        <div class="section" id="motionEffects" style="display: none;">
+            <h2>🎬 运动效果</h2>
+            <div class="template-category">
+                <h3>📏 缩放效果</h3>
+                <div class="template-grid" id="templateGrid">
+                    <button class="template-btn" data-template="zoom-in">放大 🔍</button>
+                    <button class="template-btn" data-template="zoom-out">缩小 🔎</button>
+                </div>
+            </div>
+            <div class="template-category">
+                <h3>↔️ 水平平移</h3>
+                <div class="template-grid">
+                    <button class="template-btn" data-template="pan-left">左移 ⬅️</button>
+                    <button class="template-btn" data-template="pan-right">右移 ➡️</button>
+                </div>
+            </div>
+            <div class="template-category">
+                <h3>↕️ 垂直平移</h3>
+                <div class="template-grid">
+                    <button class="template-btn" data-template="pan-up">上移 ⬆️</button>
+                    <button class="template-btn" data-template="pan-down">下移 ⬇️</button>
+                </div>
+            </div>
+            <div class="template-category">
+                <h3>🔄 旋转效果</h3>
+                <div class="template-grid">
+                    <button class="template-btn" data-template="roll-clockwise">顺时针 🔄</button>
+                    <button class="template-btn" data-template="roll-anticlockwise">逆时针 🔃</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 提示词 -->
+        <div class="section">
+            <h2 data-i18n="prompt.title">💬 提示词（可选）</h2>
+            <textarea
+                id="promptInput"
+                class="prompt-input"
+                data-i18n-placeholder="prompt.placeholder"
+                placeholder="描述你想要的视频效果，例如：缓慢移动、旋转、放大等..."
+                rows="3"
+                maxlength="550"
+            ></textarea>
+            <div class="char-count">
+                <span id="charCount">0</span>/550
+            </div>
+        </div>
+
+        <!-- CogVideoX 提示词（仅CogVideoX显示） -->
+        <div class="section" id="cogvideoPromptSection" style="display: none;">
+            <h2 data-i18n="prompt.cogvideo.title">💬 视频效果描述（CogVideoX）</h2>
+            <textarea
+                id="cogvideoPromptInput"
+                class="prompt-input"
+                data-i18n-placeholder="prompt.cogvideo.placeholder"
+                placeholder="描述你想要的视频效果，例如：镜头缓慢推进，人物自然微笑，头发随风飘动..."
+                rows="4"
+                maxlength="550"
+            ></textarea>
+            <div class="prompt-hint" data-i18n="prompt.cogvideo.hint">💡 提示：上传图片生成图片转视频(I2V)，仅输入提示词生成文字转视频(T2V)</div>
+            <div class="char-count">
+                <span id="cogvideoCharCount">0</span>/550
+            </div>
+        </div>
+
+        <!-- 生成按钮 -->
+        <div class="action-section">
+            <button id="generateBtn" class="generate-btn" disabled>
+                <span class="btn-text" data-i18n="generate.button">生成视频 🎬</span>
+            </button>
+        </div>
+
+        <!-- 进度显示 -->
+        <div id="progressSection" class="progress-section" style="display: none;">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <div class="progress-info">
+                    <span id="statusText">正在上传图片...</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- 个人中心页面 -->
+        <div id="profileTab" class="tab-content">
+            <div id="userCenterContent"></div>
+        </div>
+    </div>
+
+    <script src="app.js?v=8"></script>
+    <script src="user-center-embedded.js?v=3"></script>
+    <script src="language-switcher.js"></script>
+</body>
+</html>

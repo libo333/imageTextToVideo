@@ -1,0 +1,43 @@
+{
+  "6669535877": {
+    "2025-11-04": [
+      {
+        "timestamp": "2025-11-04T07:22:56.621Z",
+        "model": "wan2.2-i2v-flash",
+        "template": "dissolve",
+        "prompt": "",
+        "success": true
+      },
+      {
+        "timestamp": "2025-11-04T07:52:04.949Z",
+        "model": "wan2.2-i2v-flash",
+        "template": "melt",
+        "prompt": "",
+        "success": true
+      }
+    ],
+    "2025-12-02": [
+      {
+        "timestamp": "2025-12-02T06:49:13.945Z",
+        "model": "comfyui-cogvideo",
+        "template": null,
+        "prompt": "",
+        "success": true
+      },
+      {
+        "timestamp": "2025-12-02T07:03:59.702Z",
+        "model": "comfyui-cogvideo",
+        "template": null,
+        "prompt": "",
+        "success": true
+      },
+      {
+        "timestamp": "2025-12-02T07:23:59.214Z",
+        "model": "comfyui-cogvideo",
+        "template": null,
+        "prompt": "",
+        "success": true
+      }
+    ]
+  }
+}

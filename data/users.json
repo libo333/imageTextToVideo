@@ -1,0 +1,32 @@
+{
+  "938184883": {
+    "userId": 938184883,
+    "username": "Takeshi_sendo_369",
+    "firstName": "Luciano",
+    "lastName": "",
+    "createdAt": "2025-11-27T08:21:03.783Z",
+    "membershipType": "free",
+    "membershipExpiry": null,
+    "totalUsage": 0
+  },
+  "test_user_123": {
+    "userId": "test_user_123",
+    "username": "",
+    "firstName": "",
+    "lastName": "",
+    "createdAt": "2025-11-04T03:18:32.502Z",
+    "membershipType": "free",
+    "membershipExpiry": null,
+    "totalUsage": 0
+  },
+  "6669535877": {
+    "userId": "6669535877",
+    "username": "libohuoya",
+    "firstName": "bo",
+    "lastName": "li",
+    "createdAt": "2025-11-04T06:16:59.379Z",
+    "membershipType": "free",
+    "membershipExpiry": null,
+    "totalUsage": 5
+  }
+}

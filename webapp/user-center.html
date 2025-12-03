@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="profile.title">个人中心 - 图生视频 Bot</title>
+    <link rel="stylesheet" href="user-center.css">
+    <link rel="stylesheet" href="language-selector.css">
+    <script src="./i18n/i18n.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 语言选择器 -->
+        <div class="language-selector">
+            <button class="lang-btn" id="langBtn" title="Select Language">
+                <span class="lang-icon">🌍</span>
+                <span class="lang-name" id="langName">简体中文</span>
+                <span class="lang-dropdown">▼</span>
+            </button>
+            <div class="lang-menu" id="langMenu" style="display: none;">
+                <button class="lang-option" data-lang="zh-CN">简体中文</button>
+                <button class="lang-option" data-lang="zh-TW">繁體中文</button>
+                <button class="lang-option" data-lang="en-US">English</button>
+                <button class="lang-option" data-lang="ja-JP">日本語</button>
+            </div>
+        </div>
+
+        <!-- 顶部导航 -->
+        <header class="header">
+            <div class="header-content">
+                <h1 data-i18n="profile.title">📊 个人中心</h1>
+                <button id="refreshBtn" class="refresh-btn" data-i18n="profile.refresh">🔄 刷新</button>
+            </div>
+        </header>
+
+        <!-- 加载状态 -->
+        <div id="loadingState" class="loading-state">
+            <div class="spinner"></div>
+            <p data-i18n="messages.loading">加载中...</p>
+        </div>
+
+        <!-- 错误状态 -->
+        <div id="errorState" class="error-state" style="display: none;">
+            <p data-i18n="messages.loadError">❌ 加载失败，请刷新重试</p>
+        </div>
+
+        <!-- 主要内容 -->
+        <main id="mainContent" style="display: none;">
+            <!-- 用户信息卡片 -->
+            <section class="card user-info-card">
+                <div class="card-header">
+                    <h2 data-i18n="profile.userInfo">👤 用户信息</h2>
+                </div>
+                <div class="card-body">
+                    <div class="user-info">
+                        <div class="info-item">
+                            <span class="label" data-i18n="profile.username">用户名</span>
+                            <span class="value" id="username">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label" data-i18n="profile.firstName">姓名</span>
+                            <span class="value" id="firstName">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label" data-i18n="profile.registeredDate">注册时间</span>
+                            <span class="value" id="createdAt">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label" data-i18n="profile.totalGenerated">累计生成</span>
+                            <span class="value highlight" id="totalUsage">0</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 会员状态卡片 -->
+            <section class="card membership-card">
+                <div class="card-header">
+                    <h2 id="membershipIcon">💎</h2>
+                    <h2 data-i18n="profile.membershipStatus">会员状态</h2>
+                </div>
+                <div class="card-body">
+                    <div class="membership-status">
+                        <div class="membership-type">
+                            <span id="membershipType">免费用户</span>
+                        </div>
+                        <div class="membership-details" id="membershipDetails">
+                            <!-- 动态填充 -->
+                        </div>
+                    </div>
+                    <button id="upgradeBtn" class="upgrade-btn" data-i18n="profile.upgradeMembership">⭐ 升级会员</button>
+                </div>
+            </section>
+
+            <!-- 使用情况卡片 -->
+            <section class="card usage-card">
+                <div class="card-header">
+                    <h2 data-i18n="profile.todayUsage">📈 今日使用情况</h2>
+                </div>
+                <div class="card-body">
+                    <div class="usage-stats">
+                        <div class="progress-section">
+                            <div class="progress-label">
+                                <span data-i18n="profile.usedCount">已使用</span>
+                                <span id="usageText">0 / 3</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                        </div>
+                        <div class="remaining-box">
+                            <div class="remaining-count" id="remainingCount">3</div>
+                            <div class="remaining-label" data-i18n="profile.remainingCount">剩余次数</div>
+                        </div>
+                    </div>
+                    <div class="limit-info">
+                        <p data-i18n="profile.dailyLimit">💡 每日限额 {limit} 次</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 今日使用记录 -->
+            <section class="card history-card">
+                <div class="card-header">
+                    <h2 data-i18n="profile.todayHistory">📝 今日使用记录</h2>
+                </div>
+                <div class="card-body">
+                    <div id="historyList" class="history-list">
+                        <!-- 动态填充 -->
+                    </div>
+                    <div id="emptyHistory" class="empty-state" style="display: none;">
+                        <p data-i18n="profile.emptyHistory">📭 今日暂无使用记录</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 会员套餐 -->
+            <section class="card plans-card">
+                <div class="card-header">
+                    <h2 data-i18n="profile.membershipPlans">💎 会员套餐</h2>
+                </div>
+                <div class="card-body">
+                    <div class="plans-grid">
+                        <div class="plan-item free">
+                            <div class="plan-icon">🆓</div>
+                            <div class="plan-name" data-i18n="profile.planFree">免费用户</div>
+                            <div class="plan-limit" data-i18n="profile.planFreeLimit">3 次/天</div>
+                            <div class="plan-features">
+                                <p data-i18n="profile.planAllModels">✓ 所有模型</p>
+                                <p data-i18n="profile.planAllEffects">✓ 所有特效</p>
+                            </div>
+                        </div>
+                        <div class="plan-item monthly">
+                            <div class="plan-badge" data-i18n="profile.planHot">热门</div>
+                            <div class="plan-icon">⭐</div>
+                            <div class="plan-name" data-i18n="profile.planMonthly">月度会员</div>
+                            <div class="plan-price">¥29.9/月</div>
+                            <div class="plan-limit" data-i18n="profile.planMonthlyLimit">100 次/天</div>
+                            <div class="plan-features">
+                                <p data-i18n="profile.planPriority">✓ 优先处理</p>
+                                <p data-i18n="profile.planAllFeatures">✓ 所有功能</p>
+                            </div>
+                        </div>
+                        <div class="plan-item yearly">
+                            <div class="plan-badge" data-i18n="profile.planBest">最划算</div>
+                            <div class="plan-icon">💎</div>
+                            <div class="plan-name" data-i18n="profile.planYearly">年度会员</div>
+                            <div class="plan-price">¥199/年</div>
+                            <div class="plan-limit" data-i18n="profile.planYearlyLimit">200 次/天</div>
+                            <div class="plan-features">
+                                <p data-i18n="profile.planTopPriority">✓ 最高优先级</p>
+                                <p data-i18n="profile.planDedicatedSupport">✓ 专属客服</p>
+                                <p data-i18n="profile.planEarlyAccess">✓ 新功能抢先</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <p data-i18n="profile.contactSupport">📱 如需购买会员，请在 Telegram 中联系客服</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p data-i18n="profile.footer">© 2025 图生视频 Bot - Powered by Aliyun AI</p>
+        </footer>
+    </div>
+
+    <!-- 会员弹窗 -->
+    <div id="membershipModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-i18n="profile.membershipCenter">⭐ 会员中心</h2>
+                <button class="close-btn" onclick="closeMembershipModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <p data-i18n="profile.membershipHint1">请返回 Telegram Bot，发送 /membership 命令查看详细套餐信息并购买。</p>
+                <p data-i18n="profile.membershipHint2">或联系客服购买会员。</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeMembershipModal()" class="btn-secondary" data-i18n="profile.close">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="user-center.js"></script>
+    <script src="language-switcher.js"></script>
+</body>
+</html>

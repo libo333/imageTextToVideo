@@ -1,0 +1,149 @@
+{
+  "app": {
+    "title": "画像からビデオ作成ツール",
+    "subtitle": "画像をアップロードして、モデルとエフェクトを選択し、簡単にビデオを生成します"
+  },
+  "tabs": {
+    "create": "🎬 作成ツール",
+    "profile": "📊 プロフィール"
+  },
+  "upload": {
+    "title": "📤 画像をアップロード",
+    "drag": "クリックまたはドラッグして画像をアップロード",
+    "hint": "JPG、PNG形式をサポート、最大10MB",
+    "error": {
+      "size": "ファイルサイズが10MBを超えています",
+      "type": "画像形式のみサポート (JPG, PNG)"
+    }
+  },
+  "engine": {
+    "title": "🤖 AIエンジン",
+    "svd": {
+      "name": "SVD",
+      "desc": "細部保持 • 25フレーム • 4秒",
+      "capability": "🖼️ 画像からビデオのみ"
+    },
+    "animatediff": {
+      "name": "AnimateDiff",
+      "desc": "スタイル化アニメーション • 32フレーム • 5秒",
+      "capability": "🖼️ 画像からビデオのみ"
+    },
+    "cogvideo": {
+      "name": "CogVideoX 1.5",
+      "desc": "最長時間 • 49フレーム • 6秒",
+      "capability": "🖼️ 画像からビデオ • 📝 テキストからビデオ"
+    }
+  },
+  "motion": {
+    "title": "⚙️ モーション強度",
+    "label": "モーション範囲:",
+    "light": "弱い",
+    "medium": "中",
+    "strong": "強い"
+  },
+  "prompt": {
+    "title": "💬 プロンプト",
+    "placeholder": "希望するビデオエフェクトを説明、例：ゆっくりパン、回転、ズーム...",
+    "hint": "空のままにするとデフォルトプロンプトを使用",
+    "chars": "字",
+    "cogvideo": {
+      "title": "💬 ビデオエフェクト説明（CogVideoX）",
+      "placeholder": "希望するビデオエフェクトを説明、例：カメラゆっくり推進、人物自然な微笑み、髪が風で流れる...",
+      "hint": "💡 ヒント：画像をアップロードして画像からビデオ(I2V)を生成、プロンプトのみ入力してテキストからビデオ(T2V)を生成",
+      "default": "走っている人"
+    }
+  },
+  "generate": {
+    "button": "🎬 ビデオ生成",
+    "generating": "生成中...",
+    "cancel": "キャンセル"
+  },
+  "progress": {
+    "title": "📊 生成進度",
+    "uploading": "画像アップロード中...",
+    "creating": "タスク作成中...",
+    "generating": "ビデオ生成中...",
+    "t2v": "T2Vビデオ生成中...",
+    "cogvideo": "CogVideoXでビデオを生成中...（推定5〜10分）",
+    "cogvideoT2V": "CogVideoXテキストからビデオへのタスクが作成されました。ビデオを生成中...（推定5〜10分）",
+    "easyanimate": "EasyAnimateでビデオを生成中...（推定3〜5分）",
+    "queue": "タスクキュー中...",
+    "completed": "ビデオ生成完了！",
+    "failed": "生成失敗",
+    "error": "エラー"
+  },
+  "download": {
+    "success": "ビデオが正常に生成されました！",
+    "hint": "下のボタンをクリックすると、ビデオが新しいウィンドウで開きます。長押しして保存できます",
+    "countdown": "⏰ ビデオは",
+    "countdownEnd": "後に自動削除されます",
+    "button": "📥 ビデオをダウンロード",
+    "continue": "🎬 続けて作成"
+  },
+  "profile": {
+    "title": "プロフィール",
+    "refresh": "🔄 更新",
+    "userInfo": "👤 ユーザー情報",
+    "username": "ユーザー名",
+    "firstName": "名前",
+    "notSet": "未設定",
+    "unknown": "不明",
+    "registeredDate": "登録日",
+    "totalGenerated": "累計生成",
+    "membershipStatus": "メンバーシップステータス",
+    "upgradeMembership": "⭐ メンバーシップをアップグレード",
+    "todayUsage": "📈 本日の使用状況",
+    "usedCount": "使用済み",
+    "remainingCount": "残り",
+    "dailyLimit": "💡 毎日の制限: {limit} 回",
+    "todayHistory": "📝 本日の履歴",
+    "emptyHistory": "📭 本日の使用記録はありません",
+    "membershipPlans": "💎 メンバーシップ プラン",
+    "planFree": "無料ユーザー",
+    "planFreeLimit": "1 日 3 回",
+    "planAllModels": "✓ すべてのモデル",
+    "planAllEffects": "✓ すべてのエフェクト",
+    "planHot": "人気",
+    "planMonthly": "月間メンバー",
+    "planMonthlyLimit": "1 日 100 回",
+    "planPriority": "✓ 優先処理",
+    "planAllFeatures": "✓ すべての機能",
+    "planBest": "最高価値",
+    "planYearly": "年間メンバー",
+    "planYearlyLimit": "1 日 200 回",
+    "planTopPriority": "✓ 最優先",
+    "planDedicatedSupport": "✓ 専任サポート",
+    "planEarlyAccess": "✓ 早期アクセス",
+    "contactSupport": "📱 メンバーシップを購入するには、Telegram でサポートにお問い合わせください",
+    "footer": "© 2025 Image to Video Bot - Powered by Aliyun AI",
+    "membershipCenter": "⭐ メンバーシップセンター",
+    "membershipHint1": "Telegram Bot に戻り、/membership を送信して、プランを表示して購入してください。",
+    "membershipHint2": "またはサポートに連絡してメンバーシップを購入してください。",
+    "close": "閉じる",
+    "expiryDate": "有効期限",
+    "daysLeft": "残り日数",
+    "days": "日",
+    "upgradeHint": "毎日の使用数を増やすためにアップグレード",
+    "success": "✅ 成功",
+    "failed": "❌ 失敗",
+    "model": "モデル",
+    "effect": "エフェクト",
+    "prompt": "プロンプト"
+  },
+  "language": {
+    "title": "🌍 言語",
+    "select": "言語を選択"
+  },
+  "messages": {
+    "loading": "読み込み中...",
+    "loadError": "❌ 読み込みに失敗しました。ページを更新してください",
+    "error": "エラーが発生しました",
+    "uploadError": "❌ 画像のアップロードに失敗しました",
+    "uploadSuccess": "✅ 画像が正常にアップロードされました",
+    "taskCreated": "✅ タスクが作成されました、お待ちください...",
+    "taskError": "❌ タスク作成に失敗しました",
+    "operationFailed": "❌ 操作に失敗しました",
+    "statusError": "❌ ステータスの取得に失敗しました",
+    "t2vError": "❌ ビデオの生成に失敗しました"
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "app": {
+    "title": "Image to Video Creator",
+    "subtitle": "Upload an image, select a model and effects to generate stunning videos"
+  },
+  "tabs": {
+    "create": "🎬 Creator",
+    "profile": "📊 Profile"
+  },
+  "upload": {
+    "title": "📤 Upload Image",
+    "drag": "Click or drag to upload image",
+    "hint": "Supports JPG, PNG formats, max 10MB",
+    "error": {
+      "size": "File size exceeds 10MB",
+      "type": "Only image formats supported (JPG, PNG)"
+    }
+  },
+  "engine": {
+    "title": "🤖 AI Engine",
+    "svd": {
+      "name": "SVD",
+      "desc": "Detail Preservation • 25 frames • 4 sec",
+      "capability": "🖼️ Image to Video Only"
+    },
+    "animatediff": {
+      "name": "AnimateDiff",
+      "desc": "Stylized Animation • 32 frames • 5 sec",
+      "capability": "🖼️ Image to Video Only"
+    },
+    "cogvideo": {
+      "name": "CogVideoX 1.5",
+      "desc": "Longest Duration • 49 frames • 6 sec",
+      "capability": "🖼️ Image to Video • 📝 Text to Video"
+    }
+  },
+  "motion": {
+    "title": "⚙️ Motion Intensity",
+    "label": "Motion Range:",
+    "light": "Light",
+    "medium": "Medium",
+    "strong": "Strong"
+  },
+  "prompt": {
+    "title": "💬 Prompt",
+    "placeholder": "Describe the video effect you want, e.g.: slow pan, rotate, zoom...",
+    "hint": "Leave empty to use default prompt",
+    "chars": "chars",
+    "cogvideo": {
+      "title": "💬 Video Effect Description (CogVideoX)",
+      "placeholder": "Describe the video effect you want, e.g.: camera slowly pans, person smiles naturally, hair flows with wind...",
+      "hint": "💡 Tip: Upload image to generate Image-to-Video (I2V), enter prompt only to generate Text-to-Video (T2V)",
+      "default": "A person is running"
+    }
+  },
+  "generate": {
+    "button": "🎬 Generate Video",
+    "generating": "Generating...",
+    "cancel": "Cancel"
+  },
+  "progress": {
+    "title": "📊 Generation Progress",
+    "uploading": "Uploading image...",
+    "creating": "Creating task...",
+    "generating": "Generating video...",
+    "t2v": "Generating T2V video...",
+    "cogvideo": "CogVideoX generating video... (Est. 5-10 minutes)",
+    "cogvideoT2V": "CogVideoX text-to-video task created, generating video... (Est. 5-10 minutes)",
+    "easyanimate": "EasyAnimate generating video... (Est. 3-5 minutes)",
+    "queue": "Task queued...",
+    "completed": "Video generation complete!",
+    "failed": "Generation failed",
+    "error": "Error"
+  },
+  "download": {
+    "success": "Video generated successfully!",
+    "hint": "Click the button below, video will open in new window, you can long-press to save",
+    "countdown": "⏰ Video will be automatically deleted in",
+    "countdownEnd": "",
+    "button": "📥 Download Video",
+    "continue": "🎬 Create More"
+  },
+  "profile": {
+    "title": "Profile",
+    "refresh": "🔄 Refresh",
+    "userInfo": "👤 User Info",
+    "username": "Username",
+    "firstName": "Name",
+    "notSet": "Not set",
+    "unknown": "Unknown",
+    "registeredDate": "Registered",
+    "totalGenerated": "Total Generated",
+    "membershipStatus": "Membership Status",
+    "upgradeMembership": "⭐ Upgrade Membership",
+    "todayUsage": "📈 Today's Usage",
+    "usedCount": "Used",
+    "remainingCount": "Remaining",
+    "dailyLimit": "💡 Daily Limit: {limit} times",
+    "todayHistory": "📝 Today's History",
+    "emptyHistory": "📭 No usage records today",
+    "membershipPlans": "💎 Membership Plans",
+    "planFree": "Free User",
+    "planFreeLimit": "3 times/day",
+    "planAllModels": "✓ All Models",
+    "planAllEffects": "✓ All Effects",
+    "planHot": "Popular",
+    "planMonthly": "Monthly Member",
+    "planMonthlyLimit": "100 times/day",
+    "planPriority": "✓ Priority Processing",
+    "planAllFeatures": "✓ All Features",
+    "planBest": "Best Value",
+    "planYearly": "Yearly Member",
+    "planYearlyLimit": "200 times/day",
+    "planTopPriority": "✓ Top Priority",
+    "planDedicatedSupport": "✓ Dedicated Support",
+    "planEarlyAccess": "✓ Early Access",
+    "contactSupport": "📱 To purchase membership, contact support on Telegram",
+    "footer": "© 2025 Image to Video Bot - Powered by Aliyun AI",
+    "membershipCenter": "⭐ Membership Center",
+    "membershipHint1": "Return to Telegram Bot and send /membership to view plans and purchase.",
+    "membershipHint2": "Or contact support to purchase membership.",
+    "close": "Close",
+    "expiryDate": "Expiry Date",
+    "daysLeft": "Days Left",
+    "days": "days",
+    "upgradeHint": "Upgrade for more daily usage",
+    "success": "✅ Success",
+    "failed": "❌ Failed",
+    "model": "Model",
+    "effect": "Effect",
+    "prompt": "Prompt"
+  },
+  "language": {
+    "title": "🌍 Language",
+    "select": "Select Language"
+  },
+  "messages": {
+    "loading": "Loading...",
+    "loadError": "❌ Failed to load, please refresh",
+    "error": "An error occurred",
+    "uploadError": "❌ Image upload failed",
+    "uploadSuccess": "✅ Image uploaded successfully",
+    "taskCreated": "✅ Task created, please wait...",
+    "taskError": "❌ Failed to create task",
+    "operationFailed": "❌ Operation failed",
+    "statusError": "❌ Failed to get status",
+    "t2vError": "❌ Failed to generate video"
+  }
+}

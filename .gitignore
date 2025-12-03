@@ -1,0 +1,54 @@
+
+.claude
+
+# Node.js
+models/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# 用户数据和数据库
+#data/
+#*.db
+#*.sqlite
+
+# 文档
+docs/
+
+# 临时文件
+temp/
+uploads/
+*.tmp
+
+# 日志文件
+*.log
+logs/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 输出文件
+output/
+*.mp4
+
+# PM2
+.pm2/
+ecosystem.config.js
+
+# Cloudflare
+.cloudflared/
+cloudflare-tunnel.yml
+
+# 证书和密钥
+*.pem
+*.key
+*.cert

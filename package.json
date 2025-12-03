@@ -1,0 +1,42 @@
+{
+  "name": "telegram-image-to-video-bot",
+  "version": "2.0.0",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node start-render.js",
+    "start:dev": "node start-dev.js",
+    "start:pro": "node start-pro.js",
+    "start:render": "node start-render.js",
+    "dev": "node start-dev.js",
+    "prod": "node start-pro.js",
+    "webapp": "node start-webapp-only.js",
+    "server": "node server.js",
+    "comfyui": "node start-comfyui-api.js",
+    "svd": "node comfyui-svd-api.js",
+    "cogvideo": "node comfyui-cogvideo-api.js",
+    "setup-env": "node setup-env.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "video",
+    "image-to-video",
+    "comfyui",
+    "stable-diffusion"
+  ],
+  "author": "",
+  "license": "MIT",
+  "description": "Telegram Bot for generating videos from images using ComfyUI (AnimateDiff & SVD)",
+  "dependencies": {
+    "axios": "^1.13.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "form-data": "^4.0.4",
+    "multer": "^2.0.2",
+    "socket.io": "^4.8.1",
+    "telegraf": "^4.16.3",
+    "ws": "^8.18.3"
+  }
+}

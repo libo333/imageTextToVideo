@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Web App 测试</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .info {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #2481cc;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background: #1a6bb8;
+            transform: translateY(-2px);
+        }
+        .test-info {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .test-info h3 {
+            color: #f57c00;
+            margin-bottom: 10px;
+        }
+        .test-info p {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        .code {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .telegram-info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .telegram-info h3 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Telegram Web App 测试工具</h1>
+
+        <div class="info">
+            <p><strong>✅ Web App 已部署</strong></p>
+            <p>HTTPS URL: <span id="webappUrl"></span></p>
+        </div>
+
+        <div class="telegram-info">
+            <h3>📱 在 Telegram 中测试</h3>
+            <p><strong>步骤1：</strong> 在 Telegram 中打开任意对话（可以是"Saved Messages"）</p>
+            <p><strong>步骤2：</strong> 发送下面的链接并点击它</p>
+            <div class="code" id="linkCode"></div>
+            <p><strong>步骤3：</strong> Web App 会在 Telegram 内置浏览器中打开</p>
+        </div>
+
+        <a href="https://operations-davis-equations-premiere.trycloudflare.com/webapp"
+           class="btn"
+           target="_blank">
+            🚀 在新标签页中打开 Web App
+        </a>
+
+        <a href="https://t.me/ai_imagetovideo_bot"
+           class="btn"
+           target="_blank">
+            🤖 打开 Telegram Bot
+        </a>
+
+        <div class="test-info">
+            <h3>🧪 测试清单</h3>
+            <p>✅ 检查页面是否正常加载</p>
+            <p>✅ 测试"创作工具"标签功能</p>
+            <p>✅ 测试"个人中心"标签功能</p>
+            <p>✅ 检查用户信息是否正常显示</p>
+            <p>✅ 测试刷新按钮</p>
+            <p>✅ 检查使用次数统计</p>
+            <p>✅ 测试响应式布局（不同屏幕尺寸）</p>
+        </div>
+
+        <div class="test-info">
+            <h3>📊 Telegram WebApp API 信息</h3>
+            <p id="tgInfo">正在检测 Telegram WebApp 环境...</p>
+            <div id="tgData" class="code" style="display:none;"></div>
+        </div>
+    </div>
+
+    <script>
+        // 显示 Web App URL
+        const webappUrl = 'https://operations-davis-equations-premiere.trycloudflare.com/webapp';
+        document.getElementById('webappUrl').textContent = webappUrl;
+        document.getElementById('linkCode').textContent = webappUrl;
+
+        // 检测 Telegram WebApp 环境
+        if (window.Telegram && window.Telegram.WebApp) {
+            const tg = window.Telegram.WebApp;
+
+            // 展开 Web App
+            tg.expand();
+
+            // 显示信息
+            const info = {
+                'Platform': tg.platform,
+                'Version': tg.version,
+                'User ID': tg.initDataUnsafe?.user?.id || 'Not available',
+                'Username': tg.initDataUnsafe?.user?.username || 'Not available',
+                'First Name': tg.initDataUnsafe?.user?.first_name || 'Not available',
+                'Theme': tg.colorScheme,
+                'Viewport Height': tg.viewportHeight,
+                'Viewport Stable Height': tg.viewportStableHeight,
+                'Is Expanded': tg.isExpanded
+            };
+
+            document.getElementById('tgInfo').innerHTML =
+                '<strong style="color: #4caf50;">✅ 运行在 Telegram WebApp 环境中</strong>';
+
+            const dataDiv = document.getElementById('tgData');
+            dataDiv.style.display = 'block';
+            dataDiv.innerHTML = JSON.stringify(info, null, 2);
+        } else {
+            document.getElementById('tgInfo').innerHTML =
+                '<strong style="color: #ff9800;">⚠️ 当前不在 Telegram WebApp 环境中</strong><br>' +
+                '请在 Telegram 中打开此页面进行测试';
+        }
+    </script>
+</body>
+</html>

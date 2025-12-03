@@ -1,0 +1,158 @@
+/**
+ * 多语言选择器样式
+ */
+
+.language-selector {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+}
+
+.lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease-out;
+}
+
+.lang-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.lang-btn:active {
+    transform: translateY(0);
+}
+
+.lang-icon {
+    font-size: 18px;
+    display: inline-block;
+    animation: spin 2s linear infinite;
+    animation-play-state: paused;
+}
+
+.lang-btn:hover .lang-icon {
+    animation-play-state: running;
+}
+
+.lang-name {
+    max-width: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lang-dropdown {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.lang-btn.active .lang-dropdown {
+    transform: rotate(180deg);
+}
+
+/* 语言菜单 */
+.lang-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    min-width: 140px;
+    animation: dropDown 0.3s ease-out;
+}
+
+.lang-option {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    color: #333;
+}
+
+.lang-option:hover {
+    background: #f5f5f5;
+    padding-left: 20px;
+}
+
+.lang-option.active {
+    background: #667eea;
+    color: white;
+}
+
+/* 动画 */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes dropDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .language-selector {
+        top: 5px;
+        right: 5px;
+    }
+
+    .lang-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .lang-name {
+        display: none;
+    }
+
+    .lang-dropdown {
+        display: none;
+    }
+
+    .lang-menu {
+        right: -5px;
+        min-width: 130px;
+    }
+}
